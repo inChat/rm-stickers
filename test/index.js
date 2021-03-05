@@ -20,8 +20,6 @@ test('rmStickers', function (t) {
   t.end()
 
   function each(name) {
-    console.log('key', name)
-
     let ps = remark()
       .use(rmStickers(stickers))
       .processSync(':' + name + ':')

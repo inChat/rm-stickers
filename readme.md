@@ -17,31 +17,20 @@ Thumbs up: :thumbs-up:
 And our script, `example.js`, looks as follows:
 
 ```js
-var vfile = require('to-vfile')
-var report = require('vfile-reporter')
-var unified = require('unified')
-var parse = require('remark-parse')
-var stickers = require('rm-stickers')
-var stringify = require('remark-stringify')
+let remark = require('remark')
+let rmStickers = require('rm-stickers')
 
-unified()
-  .use(parse)
-  .use(stickers)
-  .use(stringify)
-  .process(vfile.readSync('example.md'), function (err, file) {
-    console.error(report(err || file))
-    console.log(String(file))
-  })
-```
+const stickers = {
+  bar: {image: 'bar.png'},
+  foo: {image: 'foo.png', title: 'the foo sticker', alt: 'a foo sticker'},
+  fun: {image: 'fun.png', alt: 'a fun sticker'},
+  sun: {image: 'sun.png', title: 'a sun sticker'}
+}
 
-Now, running `node example` yields:
+remark().use(rmStickers(stickers)).processSync(':foo:').toString()
 
-```text
-example.md: no issues found
-```
-
-```markdown
-Thumbs up: 👍
+// result
+// ![a foo sticker](foo.png "the foo sticker")
 ```
 
 ## Security

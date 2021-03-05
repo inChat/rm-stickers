@@ -28,11 +28,9 @@ function ontext(node, parents) {
   const find = /^:(\+1|[-\w]+):$/g // Line starts and ends with `:`
   const siblings = parents[length - 1].children
 
-  console.log('finding match for', value)
   match = find.exec(value)
 
   if (match && own.call(stickers, match[1])) {
-    console.log('match result', match)
     siblings[siblings.indexOf(node)] = {
       type: 'image',
       url: stickers[match[1]].image,
