@@ -1,20 +1,14 @@
 # rm-stickers
 
 A remark plugin to turn emoji shortcodes (`:my-custom-image:`) into
-custom defined images.
+pre-defined images.
 
 Based on [remark-gemoji](https://github.com/remarkjs/remark-gemoji)
 and [remark-embed-images](https://github.com/remarkjs/remark-embed-images).
 
 ## Use
 
-Say we have the following file, `example.md`:
-
-```markdown
-Thumbs up: :thumbs-up:
-```
-
-And our script, `example.js`, looks as follows:
+Example:
 
 ```js
 let remark = require('remark')
