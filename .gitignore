@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+.nyc_output/
+coverage/
+node_modules/
+rm-stickers.js
+rm-stickers.min.js
+yarn.lock

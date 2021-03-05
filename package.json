@@ -1,0 +1,83 @@
+{
+  "name": "rm-stickers",
+  "version": "0.0.1",
+  "description": "A remark plugin to turn emoji shortcodes (`:my-custom-image:`) into custom defined images",
+  "license": "MIT",
+  "keywords": [
+    "unified",
+    "remark",
+    "remark-plugin",
+    "plugin",
+    "mdast",
+    "markdown",
+    "github",
+    "emoji",
+    "stickers",
+    "short-code",
+    "shortcode"
+  ],
+  "repository": "inchat/rm-stickers",
+  "bugs": "https://github.com/inchat/rm-stickers/issues",
+  "author": "Rory Gianni <rory@inchat.design> (https://inchat.design)",
+  "contributors": [
+    "Rory Gianni <rory@inchat.design> (https://inchat.design)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "unist-util-visit-parents": "^3.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "nyc": "^15.0.0",
+    "prettier": "^2.0.0",
+    "remark": "^13.0.0",
+    "remark-cli": "^9.0.0",
+    "remark-preset-wooorm": "^8.0.0",
+    "tape": "^5.0.0",
+    "tinyify": "^3.0.0",
+    "xo": "^0.37.0"
+  },
+  "scripts": {
+    "format": "remark . -qfo --ignore-pattern test && prettier . -w --loglevel warn && xo --fix",
+    "build-bundle": "browserify . -s rmStickers > rm-stickers.js",
+    "build-mangle": "browserify . -s rmStickers -p tinyify > rm-stickers.min.js",
+    "build": "npm run build-bundle && npm run build-mangle",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test/index.js",
+    "test": "npm run format && npm run build && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false,
+    "rules": {
+      "unicorn/explicit-length-check": "off",
+      "unicorn/no-array-callback-reference": "off",
+      "unicorn/prefer-optional-catch-binding": "off"
+    },
+    "ignores": [
+      "rm-stickers.js"
+    ]
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  }
+}
